@@ -1,6 +1,6 @@
 <?php
 ini_set('memory_limit', '-1');
-set_time_limit(1500);
+set_time_limit(3600);
 
 function thumbnail($src_url, $type, $src_name, $sUploadDir, $iWidth){
 	$dst_path = $sUploadDir; 
@@ -59,11 +59,11 @@ for ($id_path = 0; $id_path < 3; $id_path++) {
 	
 				// $foldername_arr = array_diff(scandir($path ), array('.', '..'));
 				echo $path.'<br>';
-				thumbnail($path, "image/jpeg", $fileInfo, $path_folder. $folderInfo.'/', 345);
+				thumbnail($path, "image/jpeg", $fileInfo, $path_folder. $folderInfo.'/', 90);
 				
 			}
 		}
-		break;
+		// break;
 	} elseif ($id_path == 2) {
 		$path_folder = 'img-plantae/';
 		foreach (new DirectoryIterator($path_folder) as $folderInfo) {
@@ -76,7 +76,7 @@ for ($id_path = 0; $id_path < 3; $id_path++) {
 	
 				// $foldername_arr = array_diff(scandir($path ), array('.', '..'));
 				echo $path.'<br>';
-				thumbnail($path, "image/jpeg", $fileInfo, $path_folder.$folderInfo.'/', 345);
+				thumbnail($path, "image/jpeg", $fileInfo, $path_folder.$folderInfo.'/', 90);
 			}
 		}
 		break;
