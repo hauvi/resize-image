@@ -2,7 +2,7 @@
 // ini_set('memory_limit', '-1');
 set_time_limit(3600);
 
-function thumbnail($src_url, $type, $src_name, $sUploadDir, $iWidth, $Hight ){
+function thumbnail($src_url, $type, $src_name, $sUploadDir, $iWidth ){
 	$dst_path = $sUploadDir; 
 	$dst_name = "$src_name";
 	//$scale = 0.2;
@@ -12,7 +12,8 @@ function thumbnail($src_url, $type, $src_name, $sUploadDir, $iWidth, $Hight ){
 	$src_size= getimagesize($src_url);
 	# calculate h and w for thumb:
 	$dst_w=    $iWidth;//$src_size[0]*$scale;
-	$dst_h= $Hight;//$scale;
+	// $dst_h= $Hight;//$scale;
+	$dst_h= $src_size[1]/$src_size[0]*$dst_w;//$scale;
 	$dst_img=imagecreatetruecolor($dst_w,$dst_h);
 	switch($type)
 	{
@@ -48,8 +49,8 @@ function thumbnail($src_url, $type, $src_name, $sUploadDir, $iWidth, $Hight ){
 
 for ($id_path = 0; $id_path < 5; $id_path++) {
 	if ($id_path == 1) {
-		$path_folder = 'img-fungi/';
-		$out_path_folder = 'thumpnail-fungi/';
+		$path_folder = 'thmp-animalia/';
+		$out_path_folder = 'thmp-animalia/';
 		foreach (new DirectoryIterator($path_folder) as $folderInfo) {
 			if ($folderInfo->isDot()) continue;
 			// echo $folderInfo->getFilename()."<br>";
@@ -60,28 +61,28 @@ for ($id_path = 0; $id_path < 5; $id_path++) {
 	
 				// $foldername_arr = array_diff(scandir($path ), array('.', '..'));
 				echo $path.'<br>';
-				thumbnail($path, "image/jpeg", $fileInfo, $out_path_folder. $folderInfo.'/', 90, 90);
+				thumbnail($path, "image/jpeg", $fileInfo, $out_path_folder. $folderInfo.'/', 90);
 				
 			}
 		}
-		// break;
-	} elseif ($id_path == 2) {
-		$path_folder = 'img-plantae/';
-		$out_path_folder = 'thumpnail-plantae/';
-		foreach (new DirectoryIterator($path_folder) as $folderInfo) {
-			if ($folderInfo->isDot()) continue;
-			// echo $folderInfo->getFilename()."<br>";
-			foreach (new DirectoryIterator($path_folder . $folderInfo) as $fileInfo) {
-				if ($fileInfo->isDot()) continue;
-				// echo $fileInfo->getFilename()."<br>";
-				$path = $path_folder . $folderInfo . '/' . $fileInfo;
-	
-				// $foldername_arr = array_diff(scandir($path ), array('.', '..'));
-				echo $path.'<br>';
-				thumbnail($path, "image/jpeg", $fileInfo, $out_path_folder.$folderInfo.'/', 90, 90);
-			}
-		}
 		break;
+	// } elseif ($id_path == 2) {
+	// 	$path_folder = 'thumpnail-gastropoda/';
+	// 	$out_path_folder = 'thumpnail-gastropoda/';
+	// 	foreach (new DirectoryIterator($path_folder) as $folderInfo) {
+	// 		if ($folderInfo->isDot()) continue;
+	// 		// echo $folderInfo->getFilename()."<br>";
+	// 		foreach (new DirectoryIterator($path_folder . $folderInfo) as $fileInfo) {
+	// 			if ($fileInfo->isDot()) continue;
+	// 			// echo $fileInfo->getFilename()."<br>";
+	// 			$path = $path_folder . $folderInfo . '/' . $fileInfo;
+	
+	// 			// $foldername_arr = array_diff(scandir($path ), array('.', '..'));
+	// 			echo $path.'<br>';
+	// 			thumbnail($path, "image/jpeg", $fileInfo, $out_path_folder.$folderInfo.'/', 90);
+	// 		}
+	// 	}
+	// 	break;
 	}
 
 	
@@ -91,6 +92,6 @@ for ($id_path = 0; $id_path < 5; $id_path++) {
 
 // thumbnail("h1.jpg", "image/jpeg", "h2x100.jpg", "C:/xampp/htdocs/thumpnail/", 100);
 
-// thumbnail("img-fungi/aa/IMG_7790-N.JPG", "image/jpeg", "IMG_7790-Nx100.jpg", "C:/xampp/htdocs/thumpnail/", 100);
+// thumbnail("img-animaliaaa/IMG_7790-N.JPG", "image/jpeg", "IMG_7790-Nx100.jpg", "C:/xampp/htdocs/thumpnail/", 100);
 
 ?>
