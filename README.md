@@ -1,4 +1,4 @@
-My project contain some tool to working with the picture
+My project contain some tools to working with the picture
 # resize-image
 decrease the size of multi photos from multi folders
 # make-thumpnail
