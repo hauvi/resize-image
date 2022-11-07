@@ -1,7 +1,8 @@
 <?php
-for ($id_path = 0; $id_path < 3; $id_path++) {
-	if ($id_path == 1) {
-		$path_folder = '../create-folder-from-db/animalia/';
+if(isset($_REQUEST['file'])){
+    $path_folder = $_REQUEST['file'];
+    $path_folder = str_replace('\\','/',$path_folder).'/';
+
 		foreach (new DirectoryIterator($path_folder) as $folderInfo) {
 			if ($folderInfo->isDot()) continue;
 			// echo $folderInfo->getFilename()."<br>";
@@ -31,10 +32,4 @@ for ($id_path = 0; $id_path < 3; $id_path++) {
 				
 			}
 		}
-		// break;
-    }
-
-
-/* $dir = 'thumpnail-animalia/Accipiter badius'; // dir path assign here
-  echo (count(glob("$dir/*")) === 0) ? 'Empty' : 'Not empty'; */
 ?>
